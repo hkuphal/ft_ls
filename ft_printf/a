@@ -1,0 +1,4 @@
+sh b
+make
+gcc -o printf main.c -L . -lftprintf
+./printf | cat -e
