@@ -1,28 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ghalvors <ghalvors@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hkuphal <hkuphal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 12:49:25 by hkuphal           #+#    #+#             */
-/*   Updated: 2019/04/19 18:54:21 by ghalvors         ###   ########.fr       */
+/*   Created: 2019/04/19 17:50:39 by hkuphal           #+#    #+#             */
+/*   Updated: 2019/04/19 18:30:58 by hkuphal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
-#include "libft.h"
-#include "ft_printf.h"
 
-int		main(int ac, char **av)
+void	init(t_gen *gen)
 {
-	t_gen		gen;
-	// struct stat	buff;
-
-	init(&gen);
-	reader(ac, av, &gen);
-	ft_printf("%b\n", gen.flags);
-	// stat(av[0], &buff);
-	// ft_printf("%d\n", buff.st_size);
-	return (0);
+	gen->flags = 0;
 }

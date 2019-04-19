@@ -1,0 +1,16 @@
+-R
+Makefile
+author
+ft_ls
+ft_ls.c
+ft_ls.dSYM
+ft_ls.h
+ft_ls.o
+ft_printf
+init.c
+init.o
+libft
+reader.c
+reader.o
+test
+test1
