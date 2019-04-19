@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkuphal <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: hkuphal <hkuphal@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2019/02/21 17:23:25 by hkuphal           #+#    #+#              #
-#    Updated: 2019/04/07 12:54:08 by hkuphal          ###   ########.fr        #
+#    Updated: 2019/04/19 18:07:05 by hkuphal          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = ft_ls.c
+SRC = ft_ls.c init.c reader.c
 OBJ = $(SRC:.c=.o)
 NAME = ft_ls
 FLAGS = -Werror -Wall -Wextra

@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   error.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hkuphal <hkuphal@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 12:49:25 by hkuphal           #+#    #+#             */
-/*   Updated: 2019/04/19 18:51:18 by hkuphal          ###   ########.fr       */
+/*   Created: 2019/04/19 18:38:21 by hkuphal           #+#    #+#             */
+/*   Updated: 2019/04/19 18:47:26 by hkuphal          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_ls.h"
 
-int		main(int ac, char **av)
+void	ft_error(int k)
 {
-	t_gen		gen;
-	// struct stat	buff;
-
-	init(&gen);
-	reader(ac, av, &gen);
-	ft_printf("%b\n", gen.flags);
-	// stat(av[0], &buff);
-	// ft_printf("%d\n", buff.st_size);
-	return (0);
+	if (!k)
+		ft_printf("ERROR\n");
+	exit(0);
 }
