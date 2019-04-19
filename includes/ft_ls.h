@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_ls.c                                            :+:      :+:    :+:   */
+/*   ft_ls.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hkuphal <marvin@42.fr>                     +#+  +:+       +#+        */
+/*   By: ghalvors <ghalvors@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/04/07 12:49:25 by hkuphal           #+#    #+#             */
-/*   Updated: 2019/04/07 12:53:25 by hkuphal          ###   ########.fr       */
+/*   Created: 2019/02/21 17:26:15 by hkuphal           #+#    #+#             */
+/*   Updated: 2019/04/19 17:54:32 by ghalvors         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_ls.h"
+#ifndef FT_LS_H
+# define FT_LS_H
 
-int		main(int ac, char **av)
-{
-	(void)ac;(void)av;
-	return (0);
-}
+# define DB(x) ((double)x)
+
+#endif

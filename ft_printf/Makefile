@@ -7,25 +7,41 @@ ft_strcmp.c ft_strncat.c ft_itoa_roundd.c
 SRC = $(SRCL:%=../libft/%) ft_printf.c io.c init.c num.c str.c precision.c spec.c\
 double.c
 OBJ = $(SRC:.c=.o)
-FLAGS = -Werror -Wall -Wextra
-INCS = #-I libft/
+GCC = gcc -Werror -Wall -Wextra
+INCS = -I libft/
 NAME = libftprintf.a
+PRINTF=printf $(VERBOSE)$(TRAVIS)
 
-all: $(NAME)
+all:
+	@$(PRINTF) "%-20s\r\033[0;33m$(NAME)\033[0m"
+	$(MAKE) -q $(NAME) ; \
+	if [ $$? -eq 0 ] ; then $(PRINTF) "\r\x1b[20C\x1b[0K\033[0;31m $(NAME) \
+	is already up to date\033[0m\n"; \
+	else $(MAKE) $(NAME) && $(PRINTF) "\r\x1b[20C\x1b[0K\033[0;32m✔\033[0m\n"; \
+	fi
+
 
 $(NAME): $(OBJ)
+	@$(PRINTF) "\r\x1b[20C\x1b[0K$@"
 	ar rc $(NAME) $(OBJ)
 	ranlib $(NAME)
 
 %.o : %.c
-	gcc $(FLAGS) $(INCS) -c $< -o $@
+	@$(PRINTF) "\r\x1b[20C\x1b[0K$<"
+	$(GCC) -c $< -o $@
 
 clean:
-	make clean -C ../libft/
-	rm -f $(OBJ)
+	rm -rf $(OBJ)
 
 fclean: clean
-	make fclean -C ../libft/
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
+
+.PHONY : all clean fclean re
+
+ifndef VERBOSE
+ ifndef TRAVIS
+.SILENT:
+ endif
+endif

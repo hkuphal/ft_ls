@@ -3,14 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hkuphal <marvin@42.fr>                     +#+  +:+       +#+         #
+#    By: ghalvors <ghalvors@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2018/11/19 16:12:12 by hkuphal           #+#    #+#              #
-#    Updated: 2019/02/22 12:06:06 by hkuphal          ###   ########.fr        #
+#    Updated: 2019/04/19 18:25:40 by ghalvors         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c ft_memset.c\
+NAME = libft.a
+SRCS = ft_putchar.c ft_putstr.c ft_strcmp.c ft_strlen.c ft_swap.c ft_memset.c\
 ft_bzero.c ft_memcpy.c ft_memccpy.c ft_memmove.c ft_memchr.c ft_memcmp.c\
 ft_strdup.c ft_strcpy.c ft_strncpy.c ft_strcat.c ft_strncat.c ft_strlcat.c\
 ft_strchr.c ft_strrchr.c ft_strstr.c ft_strnstr.c ft_strncmp.c ft_atoi.c\
@@ -24,26 +25,40 @@ ft_sqrt_n.c ft_memjoin.c get_next_line.c ft_strlen_chr.c ft_putstr_chr.c\
 ft_strrev.c ft_count_words.c ft_itoa_base.c ft_itoa_u.c ft_reverse_bits.c\
 ft_itoa_bin.c ft_itoa_pointer.c ft_itoa_double.c ft_strjoin_free.c\
 ft_itoa_ldouble.c ft_itoa_roundd.c ft_atoi_long.c
-OBJ = $(SRC:.c=.o)
-NAME = libft.a
+GCC = gcc -Wall -Wextra -Werror
+OBJECTS = $(SRCS:.c=.o)
+PRINTF=printf $(VERBOSE)$(TRAVIS)
 
-all: $(NAME)
+all:
+	@$(PRINTF) "%-20s\r\033[0;33m$(NAME)\033[0m"
+	$(MAKE) -q $(NAME) ; \
+	if [ $$? -eq 0 ] ; then $(PRINTF) "\r\x1b[20C\x1b[0K\033[0;31m $(NAME) \
+	is already up to date\033[0m\n"; \
+	else $(MAKE) $(NAME) && $(PRINTF) "\r\x1b[20C\x1b[0K\033[0;32m✔\033[0m\n"; \
+	fi
 
-$(NAME): $(OBJ)
-	ar rc $(NAME) $(OBJ)
+
+$(NAME): $(OBJECTS)
+	@$(PRINTF) "\r\x1b[20C\x1b[0K$@"
+	ar rc $(NAME) $(OBJECTS)
 	ranlib $(NAME)
 
 %.o : %.c
-	gcc -c -Werror -Wall -Wextra -I. -c $<
+	@$(PRINTF) "\r\x1b[20C\x1b[0K$<"
+	$(GCC) -c $< -o $@
 
 clean:
-	rm -f $(OBJ)
+	rm -rf $(OBJECTS)
 
 fclean: clean
-	rm -f $(NAME)
+	rm -rf $(NAME)
 
 re: fclean all
 
-so:
-	gcc -c $(FLAGS) -fpic $(SRC)
-	gcc -shared -o libft.so $(OBJ)
+.PHONY : all clean fclean re
+
+ifndef VERBOSE
+ ifndef TRAVIS
+.SILENT:
+ endif
+endif
